@@ -10,6 +10,9 @@ function setup() {
 
 function draw() {
     background('#25B8FC');
+    textSize(difference);
+    fill('#C41212');
+    text('wordboii', noseX, noseY);
 }
 
 function modelLoaded() {
@@ -19,5 +22,13 @@ function modelLoaded() {
 function gotPoses(results) {
     if(results.length > 0) {
         console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        console.log("noseX = " + noseX + "noseY = " + noseY);
+
+        leftWristX = results[0].pose.leftWrist.x;
+        rightWristX = results[0].pose.rightWrist.x;
+        difference = floor(leftWristX - rightWristX);
+        console.log("leftWirstX = " + leftWristX + "rightWirstX = " + rightWristX);
     }
 }
